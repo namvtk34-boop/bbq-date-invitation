@@ -63,7 +63,17 @@ const dateInput=document.getElementById('dateInput'),timeInput=document.getEleme
 const now=new Date(), pad=n=>String(n).padStart(2,'0'); dateInput.min=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
 document.getElementById('confirmBtn').onclick=()=>{if(!dateInput.value||!timeInput.value){alert('Em chọn giúp anh ngày và giờ trước nhaaa 🥹💕');return;} const [y,m,d]=dateInput.value.split('-'),[h,min]=timeInput.value.split(':'); document.getElementById('summary').innerHTML=`Vậy ngày <b>${Number(d)}</b> tháng <b>${Number(m)}</b> năm <b>${y}</b>, lúc <b>${h} giờ ${min} phút</b> mình ăn thịt nướng nhaaa 🥰<br>📍 Quán gần nhà em`;show('result');};
 document.getElementById('backBtn').onclick=()=>show('schedule');
-document.getElementById('finishBtn').onclick=()=>{document.getElementById('modal').classList.add('show');burst();};
+document.getElementById('finishBtn').onclick=async()=>{
+  const btn=document.getElementById('finishBtn');
+  btn.disabled=true; const old=btn.innerHTML; btn.innerHTML='Đang gửi... 💌';
+  try{
+    const res=await fetch('/api/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({date:dateInput.value,time:timeInput.value,place:'Quán gần nhà em'})});
+    if(!res.ok) throw new Error('submit failed');
+    document.getElementById('modal').classList.add('show'); burst();
+  }catch(e){
+    alert('Có chút lỗi khi gửi kết quả 🥹 Anh vẫn biết là em đồng ý rồi nha!');
+  }finally{btn.disabled=false;btn.innerHTML=old;}
+};
 document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')e.currentTarget.classList.remove('show')};
 function burst(){for(let i=0;i<34;i++){const c=document.createElement('div');c.className='confetti';c.textContent=['♥','💗','💕','✨'][Math.floor(Math.random()*4)];c.style.left=Math.random()*100+'vw';c.style.fontSize=(14+Math.random()*22)+'px';c.style.animationDelay=(Math.random()*.7)+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),3800)}}
 const bg=document.getElementById('bg');for(let i=0;i<18;i++){const h=document.createElement('span');h.className='heart';h.style.left=Math.random()*100+'%';h.style.fontSize=(13+Math.random()*25)+'px';h.style.animationDuration=(7+Math.random()*9)+'s';h.style.animationDelay=(-Math.random()*12)+'s';bg.appendChild(h)}for(let i=0;i<15;i++){const s=document.createElement('span');s.className='spark';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.width=s.style.height=(2+Math.random()*4)+'px';s.style.animationDelay=(-Math.random()*3)+'s';bg.appendChild(s)}
