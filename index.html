@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#fff0f5" />
+<title>Đi ăn thịt nướng với anh nhoé 💗</title>
+<style>
+:root{--pink:#ff6f9f;--pink2:#ff91b7;--ink:#694354;--card:rgba(255,255,255,.78);--shadow:0 18px 55px rgba(174,79,116,.18)}
+*{box-sizing:border-box} body{margin:0;min-height:100svh;font-family:ui-rounded,"SF Pro Rounded","Nunito","Segoe UI",sans-serif;color:var(--ink);overflow:hidden;background:linear-gradient(145deg,#fff8fb,#ffe9f1 48%,#fff4f8)}
+.bg{position:fixed;inset:0;pointer-events:none;overflow:hidden}.heart{position:absolute;bottom:-40px;opacity:.22;animation:float linear infinite}.heart::before{content:"♥";color:#ff8fb4}.spark{position:absolute;border-radius:50%;background:#fff;opacity:.6;animation:twinkle 2.8s ease-in-out infinite}
+@keyframes float{to{transform:translateY(-115vh) rotate(18deg);opacity:0}} @keyframes twinkle{50%{transform:scale(.45);opacity:.15}}
+.app{min-height:100svh;display:grid;place-items:center;padding:20px;position:relative}.card{width:min(92vw,520px);min-height:440px;padding:34px 24px;border:1px solid rgba(255,255,255,.9);border-radius:32px;background:var(--card);backdrop-filter:blur(15px);box-shadow:var(--shadow);text-align:center;position:relative;overflow:hidden}.page{display:none;animation:enter .45s cubic-bezier(.2,.8,.2,1)}.page.active{display:block}@keyframes enter{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:none}}
+.kicker{font-size:14px;letter-spacing:.12em;color:#b67890;margin-top:3px}.emoji{font-size:56px;filter:drop-shadow(0 8px 15px #ffb4cb77);animation:bob 2.4s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-6px) rotate(3deg)}}h1{font-size:clamp(28px,7vw,39px);line-height:1.25;margin:15px 0 10px;color:#7b4058}p{line-height:1.65}.sub{color:#a06b80;margin:0 auto 24px;max-width:390px}
+.btn{border:0;border-radius:999px;padding:15px 22px;font-size:16px;font-weight:800;cursor:pointer;transition:.2s transform,.2s box-shadow;box-shadow:0 9px 22px rgba(223,91,139,.2);font-family:inherit}.btn:active{transform:scale(.96)}.yes{background:linear-gradient(135deg,var(--pink),var(--pink2));color:#fff;animation:pulse 2s infinite}@keyframes pulse{50%{box-shadow:0 10px 30px rgba(255,91,145,.38);transform:translateY(-1px)}}
+.invite-zone{height:150px;position:relative;margin-top:18px}.yes{position:absolute;left:50%;top:16px;transform:translateX(-50%)}.yes:hover{transform:translateX(-50%) translateY(-2px)}.escape{position:absolute;left:50%;top:86px;transform:translateX(-50%);white-space:nowrap;background:#fff;color:#a55d78;border:1px solid #f4c9d8;box-shadow:0 7px 18px rgba(170,80,110,.1)}
+.form{display:grid;gap:14px;text-align:left;margin:24px 0}.field{background:rgba(255,255,255,.75);border:1px solid #f6d4df;border-radius:20px;padding:13px 15px}.field label{display:block;font-size:12px;font-weight:800;color:#b16f87;margin:0 0 6px 2px;text-transform:uppercase;letter-spacing:.08em}.field input{width:100%;border:0;outline:0;background:transparent;font:700 17px inherit;color:#74465a}.place{font-size:17px;font-weight:800}.full{width:100%;margin-top:6px}.secondary{background:#fff;color:#a05d76;border:1px solid #f3cad8;box-shadow:none}.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}.summary{background:#fff9fb;border:1px dashed #f2b9ce;border-radius:22px;padding:17px;margin:24px 0;font-size:17px;font-weight:700;line-height:1.8;color:#824c62}
+.modal{position:fixed;inset:0;display:none;place-items:center;padding:20px;background:rgba(105,48,71,.24);backdrop-filter:blur(8px);z-index:30}.modal.show{display:grid;animation:fade .3s}.modal-box{width:min(90vw,430px);padding:35px 22px;border-radius:30px;background:#fff;text-align:center;box-shadow:0 24px 70px rgba(112,52,76,.25);animation:pop .45s cubic-bezier(.2,1.4,.4,1)}.modal-box .big{font-size:62px}.modal-box h2{font-size:28px;color:#7e4059}@keyframes fade{from{opacity:0}}@keyframes pop{from{transform:scale(.75);opacity:0}}
+.confetti{position:fixed;top:-20px;z-index:50;pointer-events:none;animation:fall 2.8s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(520deg);opacity:.15}}
+.note{font-size:12px;color:#bd899c;margin-top:13px}@media(max-width:420px){.card{padding:28px 18px;min-height:420px}.invite-zone{height:175px}h1{font-size:29px}}
+</style>
+</head>
+<body>
+<div class="bg" id="bg"></div>
+<main class="app"><section class="card">
+  <div class="page active" id="invite">
+    <div class="emoji">💗</div><div class="kicker">MỘT LỜI MỜI NHO NHỎ</div>
+    <h1>Đi ăn thịt nướng với anh nhoé :vv</h1>
+    <p class="sub">Anh có một chiếc kèo thơm muốn chốt với em 🥩✨</p>
+    <div class="invite-zone" id="inviteZone">
+      <button class="btn yes" id="yesBtn">Dạ cóoo ♥️</button>
+      <button class="btn escape" id="escapeBtn">Để em suy nghĩ đã...</button>
+    </div>
+  </div>
+
+  <div class="page" id="schedule">
+    <div class="emoji">🗓️</div><div class="kicker">CHỐT KÈO NÀO</div><h1>Mình chốt kèo thuiii</h1>
+    <div class="form">
+      <div class="field"><label>Ngày mình đi</label><input type="date" id="dateInput"></div>
+      <div class="field"><label>Giờ & phút</label><input type="time" id="timeInput" step="300"></div>
+      <div class="field"><label>Địa điểm</label><div class="place">📍 Quán gần nhà em</div></div>
+    </div>
+    <button class="btn yes full" id="confirmBtn" style="position:static;transform:none">Xác nhận lựa chọn 💕</button>
+    <div class="note">Chọn ngày giờ em thấy thoải mái nhất nhaaa</div>
+  </div>
+
+  <div class="page" id="result">
+    <div class="emoji">🥰</div><div class="kicker">YAYYYY!</div><h1>Được rùiiiiiiii</h1>
+    <div class="summary" id="summary"></div>
+    <div class="actions"><button class="btn secondary" id="backBtn">Chọn lại nè</button><button class="btn yes" id="finishBtn" style="position:static;transform:none">終わりりり 💗</button></div>
+  </div>
+</section></main>
+<div class="modal" id="modal"><div class="modal-box"><div class="big">💞</div><h2>Cảm ơn em đã đồng ý😌</h2><p>Vậy là kèo thịt nướng được chốt rồiii 🥩💕</p></div></div>
+<script>
+const pages=[...document.querySelectorAll('.page')];
+function show(id){pages.forEach(p=>p.classList.toggle('active',p.id===id));}
+const escapeBtn=document.getElementById('escapeBtn'), zone=document.getElementById('inviteZone');
+const texts=['Để em suy nghĩ đã...','Để em suy nghĩ đã...','Ơ kìa?!','Ơ kìa?!','Bấm có đi mờ🥹','Bấm có đi mờ🥹','Nó trốn mất tiêu rồi😌']; let escapeCount=0;
+function runAway(){escapeCount++; escapeBtn.textContent=texts[Math.min(escapeCount,texts.length-1)]; const z=zone.getBoundingClientRect(), b=escapeBtn.getBoundingClientRect(); const maxX=Math.max(0,z.width-b.width-6), maxY=Math.max(0,z.height-b.height-4); escapeBtn.style.left=(Math.random()*maxX)+'px';escapeBtn.style.top=(Math.random()*maxY)+'px';escapeBtn.style.transform='none';}
+escapeBtn.addEventListener('mouseenter',runAway);escapeBtn.addEventListener('pointerdown',e=>{e.preventDefault();runAway()});escapeBtn.addEventListener('touchstart',e=>{e.preventDefault();runAway()},{passive:false});
+document.getElementById('yesBtn').onclick=()=>show('schedule');
+const dateInput=document.getElementById('dateInput'),timeInput=document.getElementById('timeInput');
+const now=new Date(), pad=n=>String(n).padStart(2,'0'); dateInput.min=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
+document.getElementById('confirmBtn').onclick=()=>{if(!dateInput.value||!timeInput.value){alert('Em chọn giúp anh ngày và giờ trước nhaaa 🥹💕');return;} const [y,m,d]=dateInput.value.split('-'),[h,min]=timeInput.value.split(':'); document.getElementById('summary').innerHTML=`Vậy ngày <b>${Number(d)}</b> tháng <b>${Number(m)}</b> năm <b>${y}</b>, lúc <b>${h} giờ ${min} phút</b> mình ăn thịt nướng nhaaa 🥰<br>📍 Quán gần nhà em`;show('result');};
+document.getElementById('backBtn').onclick=()=>show('schedule');
+document.getElementById('finishBtn').onclick=()=>{document.getElementById('modal').classList.add('show');burst();};
+document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')e.currentTarget.classList.remove('show')};
+function burst(){for(let i=0;i<34;i++){const c=document.createElement('div');c.className='confetti';c.textContent=['♥','💗','💕','✨'][Math.floor(Math.random()*4)];c.style.left=Math.random()*100+'vw';c.style.fontSize=(14+Math.random()*22)+'px';c.style.animationDelay=(Math.random()*.7)+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),3800)}}
+const bg=document.getElementById('bg');for(let i=0;i<18;i++){const h=document.createElement('span');h.className='heart';h.style.left=Math.random()*100+'%';h.style.fontSize=(13+Math.random()*25)+'px';h.style.animationDuration=(7+Math.random()*9)+'s';h.style.animationDelay=(-Math.random()*12)+'s';bg.appendChild(h)}for(let i=0;i<15;i++){const s=document.createElement('span');s.className='spark';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.width=s.style.height=(2+Math.random()*4)+'px';s.style.animationDelay=(-Math.random()*3)+'s';bg.appendChild(s)}
+</script>
+</body></html>
